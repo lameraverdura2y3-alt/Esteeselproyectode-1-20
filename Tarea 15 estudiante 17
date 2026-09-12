@@ -1,0 +1,57 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_15;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Control de Acceso con Tres Intentos
+
+        const int Codigo_Correcto = 2022;
+        const int Intentos_Maximo = 3;
+
+        int intentosRestantes = Intentos_Maximo;
+        bool acerto = false;
+
+        do
+        {
+            Console.Write("Ingrese el codigo de acceso: ");
+            int codigo = int.Parse(Console.ReadLine());
+
+            if (codigo == Codigo_Correcto)
+            {
+                acerto = true;
+
+
+                Console.Write("Nivel de permiso (1 = consulta, 2 = edicion): ");
+                int nivel = int.Parse(Console.ReadLine());
+
+                if (nivel == 1)
+                {
+                    Console.WriteLine("Acceso concedido: modo CONSULTA.");
+                }
+                else if (nivel == 2)
+                {
+                    Console.WriteLine("Acceso concedido: modo EDICION.");
+                }
+                else
+                {
+                    Console.WriteLine("Nivel no valido, se asigna modo CONSULTA por defecto.");
+                }
+            }
+            else
+            {
+                intentosRestantes--;
+                Console.WriteLine("Codigo incorrecto. Intentos restantes: " + intentosRestantes);
+            }
+
+        } while (!acerto && intentosRestantes > 0);
+
+        if (!acerto)
+        {
+            Console.WriteLine("Cuenta bloqueada: se agotaron los intentos.");
+        }
+    }
+}
