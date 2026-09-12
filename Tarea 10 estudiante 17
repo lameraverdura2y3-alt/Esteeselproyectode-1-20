@@ -1,0 +1,39 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_10;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Promedio de Piezas Catalogadas de la Colección frente a la Meta
+        const int TOTAL_PIEZAS = 8;
+        const double UMBRAL = 120;
+
+        double suma = 0;
+        int contador = 1;
+
+        while (contador <= TOTAL_PIEZAS)
+        {
+            Console.Write("Ingrese piezas catalogadas de la pieza " + contador + ": ");
+            double piezas = double.Parse(Console.ReadLine());
+
+            suma += piezas;
+            contador++;
+        }
+
+        double promedio = suma / TOTAL_PIEZAS;
+
+        Console.WriteLine("Promedio de piezas catalogadas: " + promedio);
+
+        if (promedio >= UMBRAL)
+        {
+            Console.WriteLine("Situacion ACEPTABLE.");
+        }
+        else
+        {
+            Console.WriteLine("Situacion requiere INTERVENCION.");
+        }
+    }
+}
