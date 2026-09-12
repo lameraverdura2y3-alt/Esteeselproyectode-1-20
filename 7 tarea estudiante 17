@@ -1,0 +1,48 @@
+
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Semáforo de Clasificación de Frases de Prueba
+
+        const int TOTAL_FRASES = 8;
+        const int UMBRAL_EXCELENTE = 85;
+        const int UMBRAL_ACEPTABLE = 65;
+
+        int excelente = 0;
+        int aceptable = 0;
+        int deficiente = 0;
+
+        for (int i = 1; i <= TOTAL_FRASES; i++)
+        {
+            Console.Write("Ingrese precision (%) de la frase " + i + ": ");
+            int precision = int.Parse(Console.ReadLine());
+
+            if (precision >= UMBRAL_EXCELENTE)
+            {
+                Console.WriteLine("PRECISION EXCELENTE");
+                excelente++;
+            }
+            else if (precision >= UMBRAL_ACEPTABLE)
+            {
+                Console.WriteLine("PRECISION ACEPTABLE");
+                aceptable++;
+            }
+            else
+            {
+                Console.WriteLine("PRECISION DEFICIENTE");
+                deficiente++;
+            }
+        }
+
+        Console.WriteLine("Resumen:");
+        Console.WriteLine("Excelente: " + excelente);
+        Console.WriteLine("Aceptable: " + aceptable);
+        Console.WriteLine("Deficiente: " + deficiente);
+    }
+}
