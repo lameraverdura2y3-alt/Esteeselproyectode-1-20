@@ -1,0 +1,39 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        //Validación del Dato de Siniestros de Tránsito Registradosstring 
+        const int total_teleconsultas = 4;
+        const int MINUTOS = 40;
+
+        int cumplen = 0;
+        int noCumplen = 0;
+
+        for (int i = 1; i <= total_teleconsultas; i++)
+        {
+            Console.Write("Ingrese duracion en minutos de la teleconsulta " + i + ": ");
+            int minutos = int.Parse(Console.ReadLine());
+
+            if (minutos >= MINUTOS)
+            {
+                Console.WriteLine("CUMPLE");
+                cumplen++;
+            }
+            else
+            {
+                Console.WriteLine("NO CUMPLE");
+                noCumplen++;
+            }
+        }
+
+        Console.WriteLine("Teleconsultas que cumplen: " + cumplen);
+        Console.WriteLine("Teleconsultas que no cumplen: " + noCumplen);
+
+
+    }
+}
