@@ -1,0 +1,119 @@
+const using System;
+using System.Linq;
+
+namespace Pràctica_20;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Sistema Integral de Gestión del Ministerio de Educación
+
+        const int TOTAL_UNIDADES = 4;
+        const int MINIMO = 0;
+        const int MAXIMO = 120;
+        const int UMBRAL_CRITICA = 80;
+        const int UMBRAL_MEDIA = 40;
+        const int TAMANO_ENTREGA = 10;
+
+        int opcion;
+        int totalCargado = 0;
+        bool datosCargados = false;
+
+        do
+        {
+            Console.WriteLine("=== MINISTERIO DE EDUCACION ===");
+            Console.WriteLine("1) Carga de unidades educativas");
+            Console.WriteLine("2) Reporte de clasificacion");
+            Console.WriteLine("3) Simulacion de cobertura");
+            Console.WriteLine("4) Salir");
+            Console.Write("Elija una opcion: ");
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                totalCargado = 0;
+
+                for (int i = 1; i <= TOTAL_UNIDADES; i++)
+                {
+                    int valor;
+
+                    // do while anidado dentro del for: valida cada valor
+                    do
+                    {
+                        Console.Write("Ingrese abandono de la unidad educativa " + i + " (0 a 120): ");
+                        valor = int.Parse(Console.ReadLine());
+
+                        if (valor < MINIMO || valor > MAXIMO)
+                        {
+                            Console.WriteLine("Error: el valor debe estar entre " + MINIMO + " y " + MAXIMO + ".");
+                        }
+
+                    } while (valor < MINIMO || valor > MAXIMO);
+
+                    totalCargado += valor;
+                }
+
+                datosCargados = true;
+                Console.WriteLine("Carga completa. Total acumulado: " + totalCargado);
+            }
+            else if (opcion == 2)
+            {
+                // proteccion: no clasificar si no hay datos cargados
+                if (!datosCargados)
+                {
+                    Console.WriteLine("Aun no se cargaron datos. Use la opcion 1 primero.");
+                }
+                else
+                {
+                    double promedio = (double)totalCargado / TOTAL_UNIDADES;
+                    Console.WriteLine("Promedio: " + promedio);
+
+                    if (promedio >= UMBRAL_CRITICA)
+                    {
+                        Console.WriteLine("Clasificacion: DESERCION CRITICA");
+                    }
+                    else if (promedio >= UMBRAL_MEDIA)
+                    {
+                        Console.WriteLine("Clasificacion: DESERCION MEDIA");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Clasificacion: DESERCION BAJA");
+                    }
+                }
+            }
+            else if (opcion == 3)
+            {
+                if (!datosCargados)
+                {
+                    Console.WriteLine("Aun no se cargaron datos. Use la opcion 1 primero.");
+                }
+                else
+                {
+                    int restante = totalCargado;
+                    int jornadas = 0;
+
+                    while (restante > 0)
+                    {
+                        restante -= TAMANO_ENTREGA;
+                        jornadas++;
+                    }
+
+                    Console.WriteLine("La cobertura dura " + jornadas + " jornadas (entregas de " + TAMANO_ENTREGA + " estudiantes).");
+                }
+            }
+            else if (opcion == 4)
+            {
+                Console.WriteLine("=== RESUMEN DE LA SESION ===");
+                Console.WriteLine("Total cargado: " + (datosCargados ? totalCargado.ToString() : "sin datos"));
+                Console.WriteLine("Saliendo del sistema...");
+            }
+            else
+            {
+                Console.WriteLine("Opcion no valida.");
+            }
+
+        } while (opcion != 4);
+    }
+}
