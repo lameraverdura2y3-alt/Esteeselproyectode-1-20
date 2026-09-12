@@ -1,0 +1,48 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_13;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Cálculo de Periodos para Alcanzar una Meta
+
+        const int META = 1800;
+        int acumulado = 0;
+        int periodos = 0;
+
+        while (acumulado < META)
+        {
+            Console.Write("Ingrese el avance del periodo " + (periodos + 1) + ": ");
+            int avance = int.Parse(Console.ReadLine());
+
+            if (avance == 0)
+            {
+                Console.WriteLine("Aviso: este periodo fue improductivo.");
+            }
+            else
+            {
+                Console.WriteLine("Avance registrado.");
+            }
+
+            acumulado += avance;
+            periodos++;
+
+            int pendiente = META - acumulado;
+            if (pendiente < 0)
+            {
+                pendiente = 0;
+            }
+            Console.WriteLine("Acumulado: " + acumulado + " | Saldo pendiente: " + pendiente);
+        }
+
+        int excedente = acumulado - META;
+
+        Console.WriteLine("=== RESULTADO FINAL ===");
+        Console.WriteLine("Total acumulado: " + acumulado);
+        Console.WriteLine("Excedente sobre la meta: " + excedente);
+        Console.WriteLine("Periodos utilizados: " + periodos);
+    }
+}
