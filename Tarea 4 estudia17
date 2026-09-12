@@ -1,0 +1,53 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_4;
+
+public static class Program
+{
+    public static void Main()
+    {
+        //Validación del Dato de Siniestros de Tránsito Registradosstring 
+        string opcion_2 = "Registro de hospitales de segundo nivel: 12 hospitales.";
+        string opcion_3 = "Meta del periodo: 5000 atenciones.";
+        string opcion_4 = "Rango valido de atenciones: entre 0 y 500.";
+
+        int opcion;
+
+        do
+        {
+
+            Console.WriteLine("1) Ver registro de hospitales de segundo nivel");
+            Console.WriteLine("2) Ver meta del periodo");
+            Console.WriteLine("3) Ver rango valido de atenciones medicas");
+            Console.WriteLine("4) Salir");
+            Console.Write("Elija una opcion: ");
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                Console.WriteLine(opcion_2);
+            }
+            else if (opcion == 2)
+            {
+                Console.WriteLine(opcion_3);
+            }
+            else if (opcion == 3)
+            {
+                Console.WriteLine(opcion_3);
+            }
+            else if (opcion == 4)
+            {
+                Console.WriteLine("Saliendo del sistema...");
+            }
+            else
+            {
+                Console.WriteLine("Opcion no valida, intente de nuevo.");
+            }
+
+        } while (opcion != 4);
+
+
+
+    }
+}
