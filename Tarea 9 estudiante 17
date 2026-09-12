@@ -1,0 +1,48 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Máximo y Mínimo de Usuarios Atendidos en el Día
+        const int TOTAL_TELECENTROS = 6;
+
+        int maximo = 0;
+        int minimo = 0;
+        int telecentroMax = 0;
+        int telecentroMin = 0;
+
+        for (int i = 1; i <= TOTAL_TELECENTROS; i++)
+        {
+            Console.Write("Ingrese usuarios atendidos en el telecentro " + i + ": ");
+            int usuarios = int.Parse(Console.ReadLine());
+
+            if (i == 1)
+            {
+                // el primer valor leido se guarda como maximo y minimo inicial
+                maximo = usuarios;
+                minimo = usuarios;
+                telecentroMax = i;
+                telecentroMin = i;
+            }
+
+            if (usuarios > maximo)
+            {
+                maximo = usuarios;
+                telecentroMax = i;
+            }
+
+            if (usuarios < minimo)
+            {
+                minimo = usuarios;
+                telecentroMin = i;
+            }
+        }
+
+        Console.WriteLine("Maximo: " + maximo + " usuarios (telecentro " + telecentroMax + ")");
+        Console.WriteLine("Minimo: " + minimo + " usuarios (telecentro " + telecentroMin + ")");
+    }
+}
