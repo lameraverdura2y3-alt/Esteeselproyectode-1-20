@@ -1,0 +1,53 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_18;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Línea de Tiempo de Muestreo desde 2020
+
+
+        const int ANO_INICIO = 2020;
+        const int TOTAL_ANIOS = 9;
+
+        int totalPuntosMuestreo = 0;
+        int hitosConmemorados = 0;
+
+        for (int i = 1; i <= TOTAL_ANIOS; i++)
+        {
+            int anio = ANO_INICIO + (i - 1);
+
+            Console.Write("Ano " + anio + " - puntos de muestreo registrados: ");
+            int puntos = int.Parse(Console.ReadLine());
+
+            totalPuntosMuestreo += puntos;
+
+            
+            if (i % 5 == 0)
+            {
+                Console.WriteLine("Ano " + anio + " es un ano de HITO.");
+
+                
+                Console.Write("Hubo acto conmemorativo? (1 = si, 2 = no): ");
+                int conmemoro = int.Parse(Console.ReadLine());
+
+                if (conmemoro == 1)
+                {
+                    Console.WriteLine("Se realizo un acto conmemorativo.");
+                    hitosConmemorados++;
+                }
+                else
+                {
+                    Console.WriteLine("No hubo acto conmemorativo.");
+                }
+            }
+        }
+
+        Console.WriteLine("Total de puntos de muestreo: " + totalPuntosMuestreo);
+        Console.WriteLine("Hitos conmemorados: " + hitosConmemorados);
+    }
+
+}
