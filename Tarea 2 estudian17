@@ -1,0 +1,40 @@
+ing System;
+using System.Linq;
+
+namespace Pràctica_2;
+
+public static class Program
+{
+    public static void Main()
+    {
+        //Acumulador de Rampas en Buen Estado Encontradas
+        const int esquinas = 4;
+        const int meta = 200;
+
+        int suma = 0;
+        int contador = 1;
+
+        while (contador <= esquinas)
+        {
+            Console.Write("Ingrese rampas en buen estado de la esquina " + contador + ": ");
+            int rampas = int.Parse(Console.ReadLine());
+
+            suma += rampas;
+            contador++;
+        }
+
+        Console.WriteLine("Total de rampas en buen estado: " + suma);
+
+        if (suma >= meta)
+        {
+            Console.WriteLine("Se alcanzo la meta de " + meta + " rampas.");
+        }
+        else
+        {
+            Console.WriteLine("No se alcanzo la meta de " + meta + " rampas.");
+
+
+        }
+
+    }
+}
