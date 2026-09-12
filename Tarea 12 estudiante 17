@@ -1,0 +1,52 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Clasificación de Expedientes con Verificación
+        int Total_Expedientes = 6;
+        const int Umbral_Alto = 350;
+        const int Umbral_Medio = 150;
+
+        int confirmados = 0;
+        int pendientes = 0;
+
+        for (int i = 1; i <= Total_Expedientes; i++)
+        {
+            Console.Write("Ingrese expedientes procesados en la campana " + i + ": ");
+            int valor = int.Parse(Console.ReadLine());
+
+            if (valor >= Umbral_Alto)
+            {
+                Console.Write("Fue verificado en campo? (1 = si, 2 = no): ");
+                int verificado = int.Parse(Console.ReadLine());
+
+                if (verificado == 1)
+                {
+                    Console.WriteLine("PROCESAMIENTO ALTO CONFIRMADO");
+                    confirmados++;
+                }
+                else
+                {
+                    Console.WriteLine("PROCESAMIENTO ALTO PENDIENTE DE VERIFICACION");
+                    pendientes++;
+                }
+            }
+            else if (valor >= Umbral_Medio)
+            {
+                Console.WriteLine("PROCESAMIENTO MEDIO");
+            }
+            else
+            {
+                Console.WriteLine("PROCESAMIENTO BAJO");
+            }
+        }
+
+        Console.WriteLine("Total confirmados: " + confirmados);
+        Console.WriteLine("Total pendientes de verificacion: " + pendientes);
+    }
+}
