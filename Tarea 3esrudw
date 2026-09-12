@@ -1,0 +1,30 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        //Validación del Dato de Siniestros de Tránsito Registrados
+        const int MINIMO = 0;
+        const int MAXIMO = 40;
+
+        int siniestros;
+
+        do
+        {
+            Console.Write("Ingrese cantidad de siniestros de transito (0 a 40): ");
+            siniestros = int.Parse(Console.ReadLine());
+
+            if (siniestros < MINIMO || siniestros > MAXIMO)
+            {
+                Console.WriteLine("Error: el valor debe estar entre " + MINIMO + " y " + MAXIMO + ".");
+            }
+
+        } while (siniestros < MINIMO || siniestros > MAXIMO);
+
+        Console.WriteLine("Dato valido registrado: " + siniestros);
+
+
