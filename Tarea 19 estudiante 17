@@ -1,0 +1,76 @@
+const using System;
+using System.Linq;
+
+namespace Pràctica_18;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Simulador de Campaña Hidrológica
+
+
+        const int RECURSOS_INICIALES = 3;
+        const int META_PUNTOS = 150;
+        const int PUNTOS_INTENSIVA = 12;
+        const double PUNTOS_PREVENTIVA = PUNTOS_INTENSIVA / 2.0;
+
+        int recursos = RECURSOS_INICIALES;
+        double puntos = 0;
+        bool retirado = false;
+
+        do
+        {
+            Console.WriteLine("Recursos: " + recursos + " | Puntos: " + puntos);
+            Console.WriteLine("1) Intervencion intensiva");
+            Console.WriteLine("2) Intervencion preventiva");
+            Console.WriteLine("3) Retirarse");
+            Console.Write("Elija la estrategia: ");
+            int estrategia = int.Parse(Console.ReadLine());
+
+            if (estrategia == 1)
+            {
+                puntos += PUNTOS_INTENSIVA;
+                recursos--;
+                Console.WriteLine("Intervencion intensiva aplicada. Recurso consumido.");
+
+
+                if (recursos == 1)
+                {
+                    Console.WriteLine("Aviso: queda un solo recurso disponible.");
+                }
+            }
+            else if (estrategia == 2)
+            {
+                puntos += PUNTOS_PREVENTIVA;
+                Console.WriteLine("Intervencion preventiva aplicada. No consume recursos.");
+            }
+            else if (estrategia == 3)
+            {
+                retirado = true;
+                Console.WriteLine("La brigada se retira de la campana.");
+            }
+            else
+            {
+                Console.WriteLine("Opcion no valida.");
+            }
+
+        } while (recursos > 0 && !retirado && puntos < META_PUNTOS);
+
+        Console.WriteLine("=== RESULTADO FINAL ===");
+        Console.WriteLine("Puntos totales: " + puntos);
+
+        if (puntos >= META_PUNTOS)
+        {
+            Console.WriteLine("Clasificacion: RETROCESO ACELERADO");
+        }
+        else if (puntos >= META_PUNTOS / 2.0)
+        {
+            Console.WriteLine("Clasificacion: RETROCESO MODERADO");
+        }
+        else
+        {
+            Console.WriteLine("Clasificacion: GLACIAR ESTABLE");
+        }
+    }
+}
