@@ -1,0 +1,41 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+//Validación del Dato de Siniestros de Tránsito Registradosstring
+
+        const double RESERVA_INICIAL = 4000;
+        const double ENTREGA_POR_JORNADA = 250; // cantidad fija por jornada
+        const double LIMITE_ALERTA = RESERVA_INICIAL * 0.20; // 20% del total
+
+        double reserva = RESERVA_INICIAL;
+        int jornadas = 0;
+
+        while (reserva > 0)
+        {
+            reserva -= ENTREGA_POR_JORNADA; // descuenta la entrega
+            jornadas++;
+
+            if (reserva < 0)
+            {
+                reserva = 0; // evita mostrar numeros negativos
+            }
+
+            Console.WriteLine("Jornada " + jornadas + ": quedan " + reserva + " hectareas.");
+
+            if (reserva < LIMITE_ALERTA)
+            {
+                Console.WriteLine("ALERTA: la reserva bajo del 20% del total.");
+            }
+        }
+
+        Console.WriteLine("La reserva duro " + jornadas + " jornadas.");
+    }
+
+}
+
