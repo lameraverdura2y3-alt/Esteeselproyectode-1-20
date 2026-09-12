@@ -1,0 +1,18 @@
+using System;
+
+class Ej01_EST17
+{
+    static void Main()
+    {
+        const int TOTAL_CENTROS = 8;
+
+        int i = 1; // inicializacion
+        while (i <= TOTAL_CENTROS) 
+        {
+            Console.WriteLine("Centro de salud N° " + i + " registrado.");
+            i++;
+        }
+
+        Console.WriteLine("Total de centros de salud registrados: " + TOTAL_CENTROS);
+    }
+}
