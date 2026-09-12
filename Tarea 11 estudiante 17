@@ -1,0 +1,84 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_3;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Sistema de monitoreo de áreas deforestadas
+        int opcion;
+        int urgentes = 0;
+
+        do
+        {
+            Console.WriteLine("=== ASAMBLEA DELIBERANTE DE 1825 ===");
+            Console.WriteLine("1) Registrar acta");
+            Console.WriteLine("2) Consultar meta");
+            Console.WriteLine("3) Salir");
+            Console.Write("Elija una opcion: ");
+            opcion = int.Parse(Console.ReadLine());
+
+            if (opcion == 1)
+            {
+                Console.WriteLine("1) Zona norte");
+                Console.WriteLine("2) Zona sur");
+                Console.Write("Elija la zona: ");
+                int zona = int.Parse(Console.ReadLine());
+
+                // if anidado: primero la zona, y dentro de cada zona la urgencia
+                if (zona == 1)
+                {
+                    Console.Write("Es urgente? (1 = si, 2 = no): ");
+                    int urgencia = int.Parse(Console.ReadLine());
+
+                    if (urgencia == 1)
+                    {
+                        Console.WriteLine("Acta URGENTE registrada en zona norte.");
+                        urgentes++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Acta registrada en zona norte (no urgente).");
+                    }
+                }
+                else if (zona == 2)
+                {
+                    Console.Write("Es urgente? (1 = si, 2 = no): ");
+                    int urgencia = int.Parse(Console.ReadLine());
+
+                    if (urgencia == 1)
+                    {
+                        Console.WriteLine("Acta URGENTE registrada en zona sur.");
+                        urgentes++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Acta registrada en zona sur (no urgente).");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Zona no valida.");
+                }
+            }
+            else if (opcion == 2)
+            {
+                Console.WriteLine("Meta del periodo: 50 actas registradas.");
+            }
+            else if (opcion == 3)
+            {
+                Console.WriteLine("Saliendo del sistema...");
+            }
+            else
+            {
+                Console.WriteLine("Opcion no valida.");
+            }
+
+        } while (opcion != 3);
+
+        Console.WriteLine("Total de registros urgentes: " + urgentes);
+    }
+}
+
