@@ -1,0 +1,60 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_17;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Registro de Retrasos con Valor Centinela
+
+
+        const int CENTINELA = -1;
+        const double UMBRAL_ALTO = 45;
+        const double UMBRAL_MEDIO = 20;
+
+        int cantidad = 0;
+        double suma = 0;
+
+        Console.Write("Ingrese minutos de retraso (-1 para terminar): ");
+        double valor = double.Parse(Console.ReadLine());
+
+        while (valor != CENTINELA)
+        {
+            suma += valor;
+            cantidad++;
+
+            Console.Write("Ingrese minutos de retraso (-1 para terminar): ");
+            valor = double.Parse(Console.ReadLine());
+        }
+
+        // proteger la division: solo calcular si hay datos
+        if (cantidad == 0)
+        {
+            Console.WriteLine("No hubo datos cargados.");
+        }
+        else
+        {
+            double promedio = suma / cantidad;
+
+            Console.WriteLine("Avenidas monitoreadas cargadas: " + cantidad);
+            Console.WriteLine("Suma total: " + suma);
+            Console.WriteLine("Promedio: " + promedio);
+
+            if (promedio >= UMBRAL_ALTO)
+            {
+                Console.WriteLine("Clasificacion: RETRASO ALTO");
+            }
+            else if (promedio >= UMBRAL_MEDIO)
+            {
+                Console.WriteLine("Clasificacion: RETRASO MEDIO");
+            }
+            else
+            {
+                Console.WriteLine("Clasificacion: RETRASO BAJO");
+            }
+        }
+    }
+
+}
