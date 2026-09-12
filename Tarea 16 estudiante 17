@@ -1,0 +1,52 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_16;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Cálculo del Incentivo por Comunidad
+
+        const int TOTAL_COMUNIDADES = 8;
+        const double UMBRAL_ALTO = 120;
+        const double UMBRAL_MEDIO = 60;
+        const double PORCENTAJE_ALTO = 0.20;
+        const double PORCENTAJE_MEDIO = 0.10;
+
+        double incentivoTotal = 0;
+        int observaciones = 0;
+
+        for (int i = 1; i <= TOTAL_COMUNIDADES; i++)
+        {
+            Console.Write("Ingrese milimetros de lluvia de la comunidad " + i + ": ");
+            double lluvia = double.Parse(Console.ReadLine());
+
+            double incentivo;
+
+            if (lluvia >= UMBRAL_ALTO)
+            {
+                incentivo = lluvia * PORCENTAJE_ALTO;
+                Console.WriteLine("Incentivo (20%): " + incentivo);
+            }
+            else if (lluvia >= UMBRAL_MEDIO)
+            {
+                incentivo = lluvia * PORCENTAJE_MEDIO;
+                Console.WriteLine("Incentivo (10%): " + incentivo);
+            }
+            else
+            {
+                incentivo = 0;
+                Console.WriteLine("Sin incentivo. Se registra observacion.");
+                observaciones++;
+            }
+
+            incentivoTotal += incentivo;
+        }
+
+        Console.WriteLine("Incentivo total del periodo: " + incentivoTotal);
+        Console.WriteLine("Cantidad de observaciones: " + observaciones);
+    }
+
+}
