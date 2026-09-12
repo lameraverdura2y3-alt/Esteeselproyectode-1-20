@@ -1,0 +1,46 @@
+using System;
+using System.Linq;
+
+namespace Pràctica_14;
+
+public static class Program
+{
+    public static void Main()
+    {
+        // Reporte de Expedientes por Zonas y Días
+
+        const int Total_Zonas = 4;
+        const int Total_Dias = 3;
+        const int Umbral_Alta = 180;
+
+        int totalGeneral = 0;
+
+        for (int zona = 1; zona <= Total_Zonas; zona++)
+        {
+            int subtotalZona = 0; // se reinicia al comenzar cada zona
+
+            for (int dia = 1; dia <= Total_Dias; dia++)
+            {
+                Console.Write("Zona " + zona + ", dia " + dia + " - expedientes revisados: ");
+                int expedientes = int.Parse(Console.ReadLine());
+
+                subtotalZona += expedientes;
+            }
+
+            Console.WriteLine("Subtotal zona " + zona + ": " + subtotalZona);
+
+            if (subtotalZona >= Umbral_Alta)
+            {
+                Console.WriteLine("Zona " + zona + ": REVISION ALTA");
+            }
+            else
+            {
+                Console.WriteLine("Zona " + zona + ": REVISION BAJA");
+            }
+
+            totalGeneral += subtotalZona; // se acumula fuera del ciclo interior
+        }
+
+        Console.WriteLine("Total general de El Alto: " + totalGeneral);
+    }
+}
